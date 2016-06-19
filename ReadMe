@@ -1,0 +1,47 @@
+Welcome to Bender!
+
+This is my first attempt at writing a Be application -- it's a two day
+hack with little error checking, so don't be too hard on me. By the way,
+I'm sure there are plenty of latent bugs in the program, so let me know
+if you find any and if you know how to correct them.
+
+Also, this is a two day hack with little error checking.
+
+I'd like to hear from you anyway, my address is: duncan@mclink.it
+
+This little program manually passes data from the A/D to the D/A
+and, while moving the audio samples, it processes them. Audio
+is read from the microphone an sent to the speaker.
+
+Them processing is conceptually very simple:
+
+- transform time-domain information to frequency-domain information
+- play with frequencies
+- transform back to time-domain information
+
+What all this boils down to, is that you hear your voice sound like
+Donald Duck's (almost). It will sound a little noisy and poor quality,
+but then, this is only a hack. Put in your own manipulation routines.
+
+The implementation is a little harder. To maximize multithreading
+I wrote the worker class (worker.c, worker.h) which connects
+to other workers, and passes data buffers down the chain after processing it.
+
+The actual processing functions are built over the worker class and only
+implement the specific code.
+
+I'll let you discover the details.
+
+Bender loads the CPUs quite a lot, even while it doesn't seem to be
+doing anything. It's normal, it's continuously doing audio data
+processing.
+
+A bug I have noticed, which I suspect could be a bug in the Be media kit
+classes, is audio not working anymore (streams somehow blocked?). It
+is necessary to restart the BeBox to get it working again.
+
+You get this software 'as is'. You can do whatever you like with it, and
+I'd like you to mention that any modification is based on my sources.
+All the rest is your business.
+
+Bye, Duncan Wilcox (duncan@mclink.it)
